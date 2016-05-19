@@ -4,7 +4,7 @@
 
 ##### Tech Stack
 
-- Vanilla JavaScript
+- JQuery
 
 - Express
 
