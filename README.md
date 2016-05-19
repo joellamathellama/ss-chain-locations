@@ -1,3 +1,3 @@
-# Soccer Spirits: Chain Locator
+## Soccer Spirits: Chain Locator
 
-### Database of NPC locations for Soccer Spirits Chains
+##### Database of NPC locations for Soccer Spirits Chains
