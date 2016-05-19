@@ -2,8 +2,35 @@
 <html>
 <head>
 	<title>SS Chain Locator</title>
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 </head>
 <body>
+	<div>
+		<input type="text" id="charName" placeholder="Player name">
+		<button onclick="searchName()">Search</button>
+	</div>
+	<ul id="locationList">
+	</ul>
+	<script type="text/javascript">
+		function searchName() {
+			var charName = document.getElementById("charName").value;
 
+			$.ajax('/charSearch/' + charName)
+				.then(datappend);
+
+			function datappend(data) {
+				var name = data.name;
+				var list = data.locations;
+				var textName = document.createTextNode(name);
+				document.getElementById("locationList").appendChild(textName);
+				for(var i of list){
+					var node = document.createElement("LI");
+					var item = document.createTextNode(i);
+					node.appendChild(item);
+					document.getElementById("locationList").appendChild(node);
+				}
+			}
+		}
+	</script>
 </body>
 </html>

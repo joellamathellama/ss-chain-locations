@@ -10,17 +10,19 @@ const assetFolder = Path.resolve(__dirname, '../client');
 routes.use(express.static(assetFolder));
 
 routes.use(function(req, res, next) {
-	console.log("bodyParser json");
 	bodyParser.json();
 	next();
 })
 
 routes.use(function(req, res, next) {
-	console.log("bodyParser urlencoded");
 	bodyParser.urlencoded({
 		extended: true
 	});
 	next();
+})
+
+routes.get('/charSearch/:name', function(req, res) {
+	res.status(200).json({name: req.params.name, locations: ['1-3', '5-3', '6-2']});
 })
 
 // Example route
