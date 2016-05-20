@@ -44,13 +44,16 @@ function addEntry() {
 	}
 	else{
 		$.ajax(configs)
-			.then(datadd);
+			.then(datadd)
+			.catch(function(err) {
+				console.log("search error", err);
+			})
 	}
 	function datadd(data) { // should return an object with name and locations
 		getList.innerHTML = "";
 		var name = data.data[0].player;
 		var list = JSON.parse(data.data[0].locations);
-		var textName = document.createTextNode(name);
+		var textName = document.createTextNode(name + ': ');
 		document.getElementById("locationList").appendChild(textName);
 		for(var i=0; i<list.length; i++){
 			var item = document.createTextNode(list[i]);
