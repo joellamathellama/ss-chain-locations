@@ -1,79 +1,122 @@
+"use strict";
+// SEARCH ------
 function searchEntry() {
-	var charName = document.getElementById("charName").value;
-	var getList = document.getElementById("locationList");
-	var message = document.createTextNode("Please fill in a players name!");
-	var configs = {
-		url: '/charSearch/' + charName,
-		method: 'GET',
-		dataType: 'json'
-	};
+	var charName = document.getElementById("charName").value,
+			message = document.createTextNode("Please fill in a players name!"),
+			view = new viewCtrl(),
+			configs = {
+				url: '/charSearch/' + charName,
+				method: 'GET',
+				dataType: 'json'
+			};
 	if(charName === ""){
-		getList.innerHTML = "";
-		getList.appendChild(message);
+		view.clean();
+		view.append(message);
 	}
 	else{
 		$.ajax(configs)
-			.then(datappend);
+			.done(success)
+			.fail(failed);
 	}
-	function datappend(data) {
-		getList.innerHTML = "";
-		var name = data.data[0].player;
-		var list = JSON.parse(data.data[0].locations);
-		var textName = document.createTextNode(name);
-		document.getElementById("locationList").appendChild(textName);
+	function success(data) {
+		var playerName = document.createTextNode(data.data[0].player + ': '),
+				list = JSON.parse(data.data[0].locations);
+		view.clean();
+		view.append(playerName);
 		for(var i=0; i<list.length; i++){
-			var item = document.createTextNode(list[i]);
-			document.getElementById("locationList").appendChild(item);
+			var item;
+			if(i === 0){
+				item = document.createTextNode(list[i]);
+			}
+			else{
+				item = document.createTextNode(", " + list[i]);
+			}
+			view.append(item);
 		}
 	}
+	function failed(err) {
+		var failMsg = document.createTextNode(err.responseJSON);
+		view.clean();
+		view.append(failMsg);
+	}
 }
-
+// ADD ------
 function addEntry() {
-	var charName = document.getElementById("charName").value;
-	var locations = document.getElementById("locations").value.split(',');
-	var getList = document.getElementById("locationList");
-	var message = document.createTextNode("Please fill in all fields!");
-	var configs = {
-		url: '/charSearch/' + charName,
-		method: 'POST',
-		data: {locations: locations}
-	};
+	var charName = document.getElementById("charName").value,
+			locations = document.getElementById("locations").value.split(','),
+			message = document.createTextNode("Please fill in all fields!"),
+			view = new viewCtrl(),
+			configs = {
+				url: '/charSearch/' + charName,
+				method: 'POST',
+				data: {locations: locations}
+			};
 	if(charName === "" || locations[0] === ""){
-		getList.innerHTML = "";
-		getList.appendChild(message);
+		view.clean();
+		view.append(message);
 	}
 	else{
 		$.ajax(configs)
-			.then(datadd)
-			.catch(function(err) {
-				console.log("search error", err);
-			})
+			.done(success)
+			.fail(failed);
 	}
-	function datadd(data) { // should return an object with name and locations
-		getList.innerHTML = "";
-		var name = data.data[0].player;
-		var list = JSON.parse(data.data[0].locations);
-		var textName = document.createTextNode(name + ': ');
-		document.getElementById("locationList").appendChild(textName);
+	function success(data) { // should return an object with name and locations
+		var playerName = data.data[0].player,
+				textName = document.createTextNode(playerName + ': '),
+				list = JSON.parse(data.data[0].locations);
+		view.clean();
+		view.append(textName);
 		for(var i=0; i<list.length; i++){
-			var item = document.createTextNode(list[i]);
-			document.getElementById("locationList").appendChild(item);
+			var item;
+			if(i === 0){
+				item = document.createTextNode(list[i]);
+			}
+			else{
+				item = document.createTextNode(", " + list[i]);
+			}
+			view.append(item);
 		}
 	}
+	function failed(err) {
+		var failMsg = document.createTextNode(err.responseJSON);
+		view.clean();
+		view.append(failMsg);
+	}
 }
-
+// DELETE ------
 function deleteEntry() {
-	console.log("delete entry");
-	var charName = document.getElementById("charName").value;
-	var getList = document.getElementById("locationList");
-	var configs = {
-		url: '/charSearch/' + charName,
-		method: 'DELETE'
-	};
+	var charName = document.getElementById("charName").value,
+			view = new viewCtrl(),
+			message = document.createTextNode("Please fill in a players name!"),
+			configs = {
+				url: '/charSearch/' + charName,
+				method: 'DELETE'
+			};
+	if(charName === ""){
+		view.clean();
+		view.append(message);
+	}
 	$.ajax(configs)
-		.then(delentry)
-	function delentry(data) {
-		getList.innerHTML = "";
-		console.log("delete data", data)
+		.done(success)
+		.fail(failed)
+	function success(data, txt) {
+		var successMsg = document.createTextNode(data);
+		view.clean();
+		view.append(successMsg);
+	}
+	function failed(err) {
+		var failMsg = document.createTextNode(err.responseJSON);
+		view.clean();
+		view.append(failMsg);
+	}
+}
+// View controller
+function viewCtrl(node){
+	var listView = document.getElementById("locationList");
+	this.clean = function() {
+		listView.innerHTML = "";
+	}
+	this.append = function(node) {
+		listView.appendChild(node);
 	}
 }

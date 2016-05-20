@@ -5,46 +5,44 @@ const db 					= require('../db');
 module.exports = locations;
 
 locations.get('/:name', function(req, res) {
-	// check if entry exists
-	// if so, send the data
-	// if not, send error 'entry does not exist'
 	const name = req.params.name;
-	db('players').where({player: name})
+	// check if entry exists
+	db('players').where({player: name}).limit(1)
 		.then(searchEntry)
+		.catch(function(err) {
+			res.status(500).json("Server error!", err);
+		})
 	function searchEntry(data) {
-		if(data.length === 0){
-			res.status(404).json({error: 'Entry does not exist'});
-		}
-		else{
+		if(data.length === 1){// if so, send the data
 			res.status(200).json({data: data});
+		}
+		else{// if not, send error 'entry does not exist'
+			res.status(404).json("Entry does not exist!");
 		}
 	}
 })
 
 locations.post('/:name', function(req, res) {
-	// check if entry exists
-	// if not, add entry, send back added data
-	// if so, send error entry 'already exists'
 	const name = req.params.name;
 	const locations = JSON.stringify(req.body.locations);
-	console.log("create entry", name, locations);
-	db('players').where({player: name})
+	// check if entry exists
+	db('players').where({player: name}).limit(1)
 		.then(createEntry)
 		.catch(function(err) {
-			console.log(".catch post data", err);
+			res.status(500).json("Server error!", err);
 		})
 	function createEntry(data) {
-		// check if there are any matches
-		if(data.length === 0){
-			// if not, insert entry
+		if(data.length === 0){// if not, insert entry
 			db('players').returning(['player', 'locations']).insert({player: name, locations: locations})
 				.then(function(data) {
-					console.log("insert data", data);
-					res.status(201).json({data: data});
+					res.status(201).json({data: data});// send back inserted data
 				})
 				.catch(function(err) {
-					console.log("insert error", err);
+					res.status(500).json(err);// server error
 				})
+		}
+		else{// if so, send error
+			res.status(403).json("Entry already exists!");
 		}
 	}
 })
@@ -54,13 +52,23 @@ locations.delete('/:name', function(req, res) {
 	// if so, delete it
 	// if not, send error 'entry does not exist'
 	const name = req.params.name;
-	console.log("delete", name);
-	db('players').where({player: name}).del()
-		.then(function(data) {
-			console.log("deleted");
-			res.status(204).json({data: "Entry deleted"});
-		})
+	db('players').where({player: name}).limit(1)
+		.then(deleteEntry)
 		.catch(function(err) {
-			console.log("delete error", err);
+			res.status(500).json("Server error!", err);
 		})
+		function deleteEntry(data) {
+			if(data.length === 1){
+				db('players').where({player: name}).del()
+					.then(function(data){
+						res.status(200).json("Entry deleted!");
+					})
+					.catch(function(err) {
+						res.status(500).json(err);
+					})
+			}
+			else{
+				res.status(403).json("Entry does not exist!");
+			}
+		}
 })

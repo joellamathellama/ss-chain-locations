@@ -14,5 +14,11 @@
     "express": "^4.13.4",
     "knex": "^0.10.0",
     "pg": "^4.5.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.1.0"
   }
 }
