@@ -12,6 +12,14 @@
 
 - Postgres
 
+##### TODO
+
+- add entry
+
+- delete entry
+
+- look up entry
+
 ##### Run in Development:
 
 - npm install

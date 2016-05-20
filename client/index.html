@@ -5,32 +5,17 @@
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 </head>
 <body>
-	<div>
-		<input type="text" id="charName" placeholder="Player name">
-		<button onclick="searchName()">Search</button>
-	</div>
-	<ul id="locationList">
-	</ul>
-	<script type="text/javascript">
-		function searchName() {
-			var charName = document.getElementById("charName").value;
-
-			$.ajax('/charSearch/' + charName)
-				.then(datappend);
-
-			function datappend(data) {
-				var name = data.name;
-				var list = data.locations;
-				var textName = document.createTextNode(name);
-				document.getElementById("locationList").appendChild(textName);
-				for(var i of list){
-					var node = document.createElement("LI");
-					var item = document.createTextNode(i);
-					node.appendChild(item);
-					document.getElementById("locationList").appendChild(node);
-				}
-			}
-		}
-	</script>
+	<center>
+		<div>
+			Player name: <input type="text" id="charName" placeholder="Ex. Yuri">
+			Story location: <input type="text" id="locations" placeholder="Ex. 1-3, 5-4, etc.">
+			<button onclick="searchEntry()">GET</button>
+			<button onclick="addEntry()">CREATE</button>
+			<button onclick="deleteEntry()">DELETE</button>
+		</div>
+		<div id="locationList">
+		</div>
+	</center>
+	<script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
