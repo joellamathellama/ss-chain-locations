@@ -3,7 +3,7 @@ var expect = require('chai').expect,
 		request = require('supertest-as-promised'),
 		express = require('express');
 
-var app = express();
+var app = express();// create server then set body-parser and error handler
 app.use(require('body-parser').json());
 app.use(function(err, req, res, next) {
 	console.error('Errors -----');
@@ -11,7 +11,7 @@ app.use(function(err, req, res, next) {
 	next(err);
 })
 var routes = require('../../server/index.js');
-app.use('/', routes);
+app.use('/', routes);// require and set routes from server/index
 
 describe("Initial tests", function() {
 	describe("Chai test", function(){
