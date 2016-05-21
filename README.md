@@ -3,7 +3,7 @@
 ##### Database of NPC locations for Soccer Spirits Chains
 
 ##### Tech Stack
--Angular
+- Angular
 
 - Jquery's Ajax
 

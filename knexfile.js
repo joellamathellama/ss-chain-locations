@@ -1,6 +1,14 @@
 const path = require('path');
 
 module.exports = {
+	test: {
+		client: 'postgresql',
+    connection: {
+    	host: 'localhost',
+    	port: '5432',
+      database: 'ss_test'
+    }
+	},
   development: {
     client: 'postgresql',
     connection: {
