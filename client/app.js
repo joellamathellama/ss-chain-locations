@@ -1,5 +1,12 @@
 "use strict";
 
+var appjs = {
+	searchEntry: searchEntry,
+	addEntry: addEntry,
+	deleteEntry: deleteEntry
+};
+
+module.exports = appjs;
 
 // SEARCH ------
 function searchEntry() {

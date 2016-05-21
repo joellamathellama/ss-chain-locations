@@ -5,8 +5,8 @@ const db 					= require('../db');
 module.exports = locations;
 
 locations.use('/', function(req, res, next) {
-	if(req.params.name === "undefined"){
-		res.status(400).json("Specifiy a player name");
+	if(req.originalUrl === "/charSearch"){
+		res.status(400).json("Specify a player name!");
 	}
 	else{
 		next();
@@ -52,6 +52,37 @@ locations.post('/:name', function(req, res) {
 		}
 		else{// if so, send error
 			res.status(409).json("Entry already exists!");
+		}
+	}
+})
+
+locations.put('/:name', function(req, res) {
+	const name = req.params.name;
+	const locations = JSON.stringify(req.body.locations);
+	// check if entry exists
+	db('players').where({player: name}).limit(1)
+		.then(changeEntry)
+		.catch(function(err) {
+			res.status(500).json("Server error!");
+		})
+	function changeEntry(data) {
+		if(data.length === 1){
+			db('players').where({player: name}).del()
+				.then(function() {
+					db('players').returning(['player', 'locations']).insert({player: name, locations: locations})
+						.then(function(data) {
+							res.status(200).json({data: data});// send back inserted data
+						})
+						.catch(function(err) {
+							res.status(500).json(err);
+						})
+				})
+				.catch(function(err) {
+					res.status(500).json("Server error!");
+				})
+		}
+		else{
+			res.status(404).json("Entry does not exist!");
 		}
 	}
 })
