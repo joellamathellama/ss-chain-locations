@@ -5,10 +5,4 @@ const db = require('knex')(config[env]);
 
 module.exports = db;
 
-db.migrate.latest(config)
-	.then(function(data) {
-		console.log("migrated", data);
-	})
-	.catch(function(err) {
-		console.log("migration error", err);
-	})
+db.migrate.latest(config);

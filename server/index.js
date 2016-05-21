@@ -15,6 +15,7 @@ routes.get('/app.js', function(req, res) {
 
 // Catch all route, MUST BE LAST
 routes.use('/*', function(req,res) {
+	// res.status(500);// Testing purposes
 	res.sendFile(assetFolder + '/index.html');
 });
 

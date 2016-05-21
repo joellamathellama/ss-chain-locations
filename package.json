@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js --ignore client/",
-    "test": "bash ./test/scripts/spec.sh",
-    "nyan": "bash ./test/scripts/nyan.sh"
+    "test": "./node_modules/.bin/mocha --recursive --reporter min",
+    "nyan": "./node_modules/.bin/mocha --recursive --reporter nyan",
+    "spec": "./node_modules/.bin/mocha --recursive --reporter spec"
   },
   "author": "Joel Ahn, Chris Nguyen",
   "license": "ISC",

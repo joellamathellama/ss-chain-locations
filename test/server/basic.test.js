@@ -1,38 +1,35 @@
-var app = require(TEST_HELPERS).createApp();
-var routes = require(__server + '/index.js');
-app.use('/', routes);// require and set routes from server/index
+var expect  = require('chai').expect;
+var request = require('supertest-as-promised');
 
-describe("Initial tests", function() {
-	describe("Expects banana", function(){
-		it("Got banana", function() {
-			var apple = "banana";
-			expect(apple).to.equal("banana");
+describe("Initial Basic Tests", function(){
+	var app     = require(TEST_HELPERS).createApp();
+	var routes  = require(__server + '/index.js');
+	app.use('/', routes);
+
+	describe("First steps", function() {
+		describe("Set apple = banana", function(){
+			it("Expect apple = banana", function() {
+				var apple = "banana";
+				expect(apple).to.equal("banana");
+			})
 		})
 	})
-})
 
-describe("Async test", function() {
-	describe("'/' GET expects 200 with data", function(){
-		it("Got 200 with data", function() {
-			return request(app)
-				.get("/")
-				.expect(200)
-				.then(function(res) {
-					describe(".then promise test", function(){
-						it("check response from request", function(){
-							expect(res).to.not.equal("undefined");
-						})
+	describe("Async test", function() {
+		describe("GET '/'", function(){
+			it("Expect 200 and index.html", function() {
+				return request(app)
+					.get("/")
+					.expect(200)
+					.then(function(res) {
+						expect(res.status).to.equal(200);
+						return res;
 					})
-					return res;
-				})
-				.then(function(data) {
-					var type = data.headers['content-type'];
-					describe("correct data received", function(){
-						it("expect index.html", function() {
-							expect(type).to.equal("text/html; charset=UTF-8");
-						})
+					.then(function(data) {
+						var type = data.headers['content-type'];
+						expect(type).to.equal("text/html; charset=UTF-8");
 					})
-				})
+			})
 		})
 	})
 })

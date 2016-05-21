@@ -22,3 +22,9 @@
 - npm install
 
 - npm start
+
+##### Tests
+
+- npm test 
+
+- npm run [nyan, min, ]
