@@ -6,9 +6,9 @@ const db = require('knex')(config[env]);
 module.exports = db;
 
 db.migrate.latest(config)
-	.then(function() {
-		console.log("migrated");
+	.then(function(data) {
+		console.log("migrated", data);
 	})
-	.catch(function() {
-		console.log("migration error");
+	.catch(function(err) {
+		console.log("migration error", err);
 	})
