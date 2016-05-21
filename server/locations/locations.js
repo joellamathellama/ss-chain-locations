@@ -4,13 +4,22 @@ const db 					= require('../db');
 
 module.exports = locations;
 
+locations.use('/', function(req, res, next) {
+	if(req.params.name === "undefined"){
+		res.status(400).json("Specifiy a player name");
+	}
+	else{
+		next();
+	}
+})
+
 locations.get('/:name', function(req, res) {
 	const name = req.params.name;
 	// check if entry exists
 	db('players').where({player: name}).limit(1)
 		.then(searchEntry)
 		.catch(function(err) {
-			res.status(500).json("Server error!", err);
+			res.status(500).json("Server error!");
 		})
 	function searchEntry(data) {
 		if(data.length === 1){// if so, send the data
@@ -29,7 +38,7 @@ locations.post('/:name', function(req, res) {
 	db('players').where({player: name}).limit(1)
 		.then(createEntry)
 		.catch(function(err) {
-			res.status(500).json("Server error!", err);
+			res.status(500).json("Server error!");
 		})
 	function createEntry(data) {
 		if(data.length === 0){// if not, insert entry
@@ -42,7 +51,7 @@ locations.post('/:name', function(req, res) {
 				})
 		}
 		else{// if so, send error
-			res.status(403).json("Entry already exists!");
+			res.status(409).json("Entry already exists!");
 		}
 	}
 })
@@ -53,7 +62,7 @@ locations.delete('/:name', function(req, res) {
 	db('players').where({player: name}).limit(1)
 		.then(deleteEntry)
 		.catch(function(err) {
-			res.status(500).json("Server error!", err);
+			res.status(500).json("Server error!");
 		})
 		function deleteEntry(data) {
 			if(data.length === 1){// if so, delete it
@@ -66,7 +75,7 @@ locations.delete('/:name', function(req, res) {
 					})
 			}
 			else{// if not, send error
-				res.status(403).json("Entry does not exist!");
+				res.status(404).json("Entry does not exist!");
 			}
 		}
 })

@@ -1,10 +1,16 @@
-var expect  = require('chai').expect;
-var request = require('supertest-as-promised');
+var expect  = require('chai').expect,
+    request = require('supertest-as-promised');
 
 describe("Initial Basic Tests", function(){
-	var app     = require(TEST_HELPERS).createApp();
-	var routes  = require(__server + '/index.js');
+	var app     = require(TEST_HELPERS).createApp(),
+			routes  = require(__server + '/index.js'),
+			db 			= require(__server + '/db.js');
+
 	app.use('/', routes);
+
+	before(function() {
+		return db.deleteAll();
+	})
 
 	describe("First steps", function() {
 		describe("Set apple = banana", function(){

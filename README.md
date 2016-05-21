@@ -30,7 +30,7 @@
 - psql ss_dev (db meddling)
 
 
-##### Server
+##### Dev Server
 
 - createdb ss_dev
 
