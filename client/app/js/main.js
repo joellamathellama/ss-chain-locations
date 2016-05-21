@@ -3,9 +3,9 @@ var app = angular.module("ssApp",['ngRoute']);
 app.config(['$routeProvider', function($routeProvider){
     $routeProvider
     .when('/',{template:'This is the default Route'})
-    .when('/services',{template:'This is the services Route'})
-    .when('/about',{template:'This is the about Route'})
-    .when('/faq',{template:'This is the faq Route'})
-    .when('/contact',{template:'This is the contact Route'})
+    .when('/book',{templateUrl: "../app/partials/book.html", controller: "ArdorController"})
+    .when('/about', {templateUrl: "../app/partials/about.html"})
+    .when('/faq',{templateUrl: "../app/partials/faq.html"})
+    .when('/contact',{templateUrl: "../app/partials/contact.html"})
     .otherwise({redirectTo:'/'});
 }]);
