@@ -5,10 +5,10 @@ const db 					= require('../db');
 module.exports = locations;
 
 locations.use('/', function(req, res, next) {
-	if(req.originalUrl === "/charSearch"){
-		res.status(400).json("Specify a player name!");
+	if(req.originalUrl === "/charSearch"){// if the original url does not have extra params(did not specify a name)
+		res.status(400).json("Specify a player name!");// send error
 	}
-	else{
+	else{// else move on
 		next();
 	}
 })

@@ -13,6 +13,9 @@ db.deleteAll = function() {
 		return Promise.reject();
 	}
 	return db('players').delete()
+		// .then(function() {
+		// 	// chain delete future tables
+		// })
 		.catch(function(err) {
 			console.log("Error deleting all", err);
 		})

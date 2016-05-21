@@ -6,7 +6,7 @@ const express     = require('express'),
 
 const assetFolder = Path.resolve(__dirname, '../client');
 
-const locations = require('./locations/locations');
+const locations = require('./routes/locations');
 routes.use('/charSearch', locations);
 
 routes.get('/app.js', function(req, res) {
