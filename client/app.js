@@ -1,4 +1,6 @@
 "use strict";
+
+
 // SEARCH ------
 function searchEntry() {
 	var charName = document.getElementById("charName").value,
@@ -40,6 +42,8 @@ function searchEntry() {
 		view.append(failMsg);
 	}
 }
+
+
 // ADD ------
 function addEntry() {
 	var charName = document.getElementById("charName").value,
@@ -83,6 +87,8 @@ function addEntry() {
 		view.append(failMsg);
 	}
 }
+
+
 // DELETE ------
 function deleteEntry() {
 	var charName = document.getElementById("charName").value,
@@ -110,6 +116,8 @@ function deleteEntry() {
 		view.append(failMsg);
 	}
 }
+
+
 // View controller
 function viewCtrl(node){
 	var listView = document.getElementById("locationList");

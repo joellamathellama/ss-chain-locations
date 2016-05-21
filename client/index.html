@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
+	<!-- Meta-Information -->
 	<title>SS Chain Locator</title>
-	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 </head>
-<body>
-	<center>
-		<div>
-			Player name: <input type="text" id="charName" placeholder="Ex. Yuri">
-			Story location: <input type="text" id="locations" placeholder="Ex. 1-3, 5-4, etc.">
-			<button onclick="searchEntry()">GET</button>
-			<button onclick="addEntry()">CREATE</button>
-			<button onclick="deleteEntry()">DELETE</button>
+<body ng-app="ssApp">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+	<div class="header">
+  	<div class="container">
+  		<div ng-controller="MainController">
+  			<h1>{{ title }}</h1>
+  		</div>
 		</div>
-		<div id="locationList">
-		</div>
-	</center>
+	</div>	
+
+	<!-- Joel's app -->
 	<script type="text/javascript" src="./app.js"></script>
+
+	<!-- Angular Module -->
+	<script type="text/javascript" src="/app/js/main.js"></script>
+
+	<!-- Angular Controller -->
+	<script type="text/javascript" src="/app/js/controllers/MainController.js"></script>
+
 </body>
 </html>
