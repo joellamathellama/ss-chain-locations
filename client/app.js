@@ -14,6 +14,7 @@ function searchEntry() {
 	if(charName === ""){
 		view.clean();
 		view.append(message);
+		return;
 	}
 	else{
 		$.ajax(configs)
@@ -58,6 +59,7 @@ function addEntry() {
 	if(charName === "" || locations[0] === ""){
 		view.clean();
 		view.append(message);
+		return;
 	}
 	else{
 		$.ajax(configs)
@@ -101,11 +103,12 @@ function deleteEntry() {
 	if(charName === ""){
 		view.clean();
 		view.append(message);
+		return;
 	}
 	$.ajax(configs)
 		.done(success)
 		.fail(failed)
-	function success(data, txt) {
+	function success(data) {
 		var successMsg = document.createTextNode(data);
 		view.clean();
 		view.append(successMsg);
@@ -119,7 +122,7 @@ function deleteEntry() {
 
 
 // View controller
-function viewCtrl(node){
+function viewCtrl(){
 	var listView = document.getElementById("locationList");
 	this.clean = function() {
 		listView.innerHTML = "";

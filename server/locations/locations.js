@@ -16,7 +16,7 @@ locations.get('/:name', function(req, res) {
 		if(data.length === 1){// if so, send the data
 			res.status(200).json({data: data});
 		}
-		else{// if not, send error 'entry does not exist'
+		else{// if not, send error
 			res.status(404).json("Entry does not exist!");
 		}
 	}
@@ -38,7 +38,7 @@ locations.post('/:name', function(req, res) {
 					res.status(201).json({data: data});// send back inserted data
 				})
 				.catch(function(err) {
-					res.status(500).json(err);// server error
+					res.status(500).json(err);
 				})
 		}
 		else{// if so, send error
@@ -48,17 +48,15 @@ locations.post('/:name', function(req, res) {
 })
 
 locations.delete('/:name', function(req, res) {
-	// check if entry exists
-	// if so, delete it
-	// if not, send error 'entry does not exist'
 	const name = req.params.name;
+	// check if entry exists
 	db('players').where({player: name}).limit(1)
 		.then(deleteEntry)
 		.catch(function(err) {
 			res.status(500).json("Server error!", err);
 		})
 		function deleteEntry(data) {
-			if(data.length === 1){
+			if(data.length === 1){// if so, delete it
 				db('players').where({player: name}).del()
 					.then(function(data){
 						res.status(200).json("Entry deleted!");
@@ -67,7 +65,7 @@ locations.delete('/:name', function(req, res) {
 						res.status(500).json(err);
 					})
 			}
-			else{
+			else{// if not, send error
 				res.status(403).json("Entry does not exist!");
 			}
 		}
