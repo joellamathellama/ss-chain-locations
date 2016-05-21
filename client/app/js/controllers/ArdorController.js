@@ -45,6 +45,6 @@ app.controller('ArdorController',['$scope', function($scope) {
 		  }, 
 		  { 
 		    title: 'Absolute Discipline Student Council', 
-		  }, 
+		  }
 		];
 }]);

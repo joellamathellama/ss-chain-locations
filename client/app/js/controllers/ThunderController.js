@@ -2,49 +2,46 @@ app.controller('ThunderController',['$scope', function($scope) {
 	$scope.book =
 		[ 
 		  { 
-		    title: 'Extreme Evolution', 
+		    title: 'Extreme Evolution',
 		  }, 
 		  { 
-		    title: 'Blue Luck High School', 
+		    title: 'Vesperion',
 		  }, 
 		  { 
-		    title: 'Gale High School', 
+		    title: 'Team Revolution',
 		  }, 
 		  { 
-		    title: "Legend Women's High School", 
+		    title: 'Cracsus',
 		  }, 
 		  { 
-		    title: 'Wooshin High School', 
+		    title: 'Control Unit',
 		  }, 
 		  { 
-		    title: 'St. Calia', 
+		    title: 'Siena Celtron',
 		  }, 
 		  { 
-		    title: 'Ferrier FC', 
+		    title: 'Jeneva Crew',
 		  }, 
 		  { 
-		    title: 'JL United', 
+		    title: 'Atlanta',
 		  }, 
 		  { 
-		    title: 'Super All Stars', 
+		    title: 'Prometheus',
 		  }, 
 		  { 
-		    title: 'World Club', 
+		    title: 'DC Neska',
 		  }, 
 		  { 
-		    title: 'Element', 
+		    title: 'Metropolis',
 		  }, 
 		  { 
-		    title: 'Underground', 
+		    title: 'Karladure',
 		  }, 
 		  { 
-		    title: 'No. 1 School', 
+		    title: 'Steel Descendents',
 		  }, 
 		  { 
-		    title: 'StrayCats', 
-		  }, 
-		  { 
-		    title: 'Absolute Discipline Student Council', 
-		  }, 
+		    title: 'AI Control Lab',
+		  }
 		];
 }]);

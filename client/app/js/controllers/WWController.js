@@ -2,49 +2,49 @@ app.controller('WWController',['$scope', function($scope) {
 	$scope.book =
 		[ 
 		  { 
-		    title: 'Extremawefasde Evolution', 
+		    title: 'Extreme Evolution',
 		  }, 
 		  { 
-		    title: 'Blue Luck High School', 
+		    title: 'Jiryu Group',
 		  }, 
 		  { 
-		    title: 'Gale High School', 
+		    title: 'Kartina Association',
 		  }, 
 		  { 
-		    title: "Legend Women's High School", 
+		    title: 'Miao Tribe',
 		  }, 
 		  { 
-		    title: 'Wooshin High School', 
+		    title: 'United Explorers',
 		  }, 
 		  { 
-		    title: 'St. Calia', 
+		    title: 'Ragrandis',
 		  }, 
 		  { 
-		    title: 'Ferrier FC', 
+		    title: 'Nodhile',
 		  }, 
 		  { 
-		    title: 'JL United', 
+		    title: 'Nadir Forest',
 		  }, 
 		  { 
-		    title: 'Super All Stars', 
+		    title: 'Valley of Red Moon',
 		  }, 
 		  { 
-		    title: 'World Club', 
+		    title: 'Steel Congress',
 		  }, 
 		  { 
-		    title: 'Element', 
+		    title: 'Emerald Pinnacle',
 		  }, 
 		  { 
-		    title: 'Underground', 
+		    title: 'The Mercenaries of Nadir',
 		  }, 
 		  { 
-		    title: 'No. 1 School', 
+		    title: 'Cherry Blossoms',
 		  }, 
 		  { 
-		    title: 'StrayCats', 
+		    title: 'The Infinity Corridor',
 		  }, 
 		  { 
-		    title: 'Absolute Discipline Student Council', 
-		  }, 
+		    title: 'Wolf Den',
+		  }
 		];
 }]);
