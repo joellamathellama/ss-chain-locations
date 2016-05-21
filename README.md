@@ -13,9 +13,7 @@
 
 - Postgres
 
-##### TODO
-
-- Implement testing: Mocha/Chai/Supertest
+- Mocha, Chai, Supertest, Supertest-as-promised
 
 ##### First things first
 
