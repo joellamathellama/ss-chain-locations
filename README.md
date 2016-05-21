@@ -3,8 +3,9 @@
 ##### Database of NPC locations for Soccer Spirits Chains
 
 ##### Tech Stack
+- Angular
 
-- JQuery
+- Jquery's Ajax
 
 - Express
 
@@ -14,11 +15,7 @@
 
 ##### TODO
 
-- add entry
-
-- delete entry
-
-- look up entry
+- Implement testing: Mocha/Chai/Supertest
 
 ##### Run in Development:
 

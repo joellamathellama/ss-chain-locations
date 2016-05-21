@@ -1,12 +1,13 @@
 {
   "name": "sschainlocation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Database for Soccer Spirits Chain NPC locations.",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js --ignore client/"
+    "start": "node server/index.js --ignore client/",
+    "test": "./node_modules/.bin/mocha --recursive --reporter nyan"
   },
-  "author": "Joel Ahn",
+  "author": "Joel Ahn, Chris Nguyen",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.0",
