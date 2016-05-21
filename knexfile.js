@@ -7,6 +7,9 @@ module.exports = {
     	host: 'localhost',
     	port: '5432',
       database: 'ss_test'
+    },
+    migrations: {
+      directory: path.join(__dirname + '/migrations')
     }
 	},
   development: {
