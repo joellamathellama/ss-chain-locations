@@ -1,7 +1,7 @@
 var expect  = require('chai').expect,
     request = require('supertest-as-promised');
 
-describe("Initial Basic Tests", function(){
+describe("Initial Server Tests", function(){
 	var app     = require(TEST_HELPERS).createApp(),
 			routes  = require(__server + '/index.js'),
 			db 			= require(__server + '/db.js');

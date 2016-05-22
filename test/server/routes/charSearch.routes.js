@@ -96,47 +96,47 @@ describe("'/charSearch' routes", function(){
 					})
 			})
 		})
-		// Requests with correct params for existing entries
-		describe("Existing entries", function() {
-			describe("POST '/:name'", function() {
-				it("Expects 409 and message", function() {
-					return request(app)
-						.post("/charSearch/griffith")
-						.expect(409)
-						.catch(function(err) {
-							expect(err.responseJSON).to.equal("Entry already exists!");
-						})
-				})
+	})
+	// Requests with correct params for existing entries
+	describe("Existing entries", function() {
+		describe("POST '/:name'", function() {
+			it("Expects 409 and message", function() {
+				return request(app)
+					.post("/charSearch/griffith")
+					.expect(409)
+					.catch(function(err) {
+						expect(err.responseJSON).to.equal("Entry already exists!");
+					})
 			})
-			describe("GET", function() {
-				it("Expects 200 and data", function() {
-					return request(app)
-						.get("/charSearch/griffith")
-						.expect(200)
-						.then(function(res) {
-							expect(res.body.data[0].player).to.equal("griffith");
-						})
-				})
+		})
+		describe("GET", function() {
+			it("Expects 200 and data", function() {
+				return request(app)
+					.get("/charSearch/griffith")
+					.expect(200)
+					.then(function(res) {
+						expect(res.body.data[0].player).to.equal("griffith");
+					})
 			})
-			describe("PUT", function() {
-				it("Expects 200 and data", function() {
-					return request(app)
-						.put("/charSearch/griffith")
-						.expect(200)
-						.then(function(res) {
-							expect(res.body.data[0].player).to.equal("griffith");
-						})
-				})
+		})
+		describe("PUT", function() {
+			it("Expects 200 and data", function() {
+				return request(app)
+					.put("/charSearch/griffith")
+					.expect(200)
+					.then(function(res) {
+						expect(res.body.data[0].player).to.equal("griffith");
+					})
 			})
-			describe("DELETE", function() {// Delete last
-				it("Expects 200 and message", function() {
-					return request(app)
-						.delete("/charSearch/griffith")
-						.expect(200)
-						.then(function(res) {
-							expect(res.body).to.equal("Entry deleted!");
-						})
-				})
+		})
+		describe("DELETE", function() {// Delete last
+			it("Expects 200 and message", function() {
+				return request(app)
+					.delete("/charSearch/griffith")
+					.expect(200)
+					.then(function(res) {
+						expect(res.body).to.equal("Entry deleted!");
+					})
 			})
 		})
 	})
