@@ -43,5 +43,9 @@ Initial
 
 - createdb ss_test
 
+- NODE_ENV=test node server/index.js
+
+- CTRL + c
+
 Consecutive
 - npm [test, run nyan, run spec]

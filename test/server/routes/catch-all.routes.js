@@ -2,14 +2,15 @@ var expect  = require('chai').expect,
 		request = require('supertest-as-promised');
 
 describe("Catch-all routes", function(){
-	var app     = require(TEST_HELPERS).createApp(),
-			routes  = require(__server + '/index.js'),
-			db 			= require(__server + '/db.js');
+	var app    = require(TEST_HELPERS).createApp(),
+			routes = require(__server + '/index.js'),
+			db 		 = require(__server + '/db.js');
 
 	app.use('/', routes);
 
-	before(function() {
-		return db.deleteAll();
+	before(function(done) {
+		db.deleteAll();
+		done();
 	})
 
 	describe("PUT '/", function() {

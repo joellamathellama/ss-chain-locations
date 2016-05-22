@@ -8,8 +8,9 @@ describe("Initial Server Tests", function(){
 
 	app.use('/', routes);
 
-	before(function() {
-		return db.deleteAll();
+	before(function(done) {
+		db.deleteAll();
+		done();
 	})
 
 	describe("First steps", function() {

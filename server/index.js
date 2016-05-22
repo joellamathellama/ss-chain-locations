@@ -1,13 +1,13 @@
-const express     = require('express'),
-		  Path        = require('path'),
-		  bodyParser  = require('body-parser'),
-		  db 					= require('./db'),
-		  routes      = express.Router();
+const express    = require('express'),
+		  Path       = require('path'),
+		  bodyParser = require('body-parser'),
+		  db   			 = require('./db'),
+		  routes     = express.Router();
 
 const assetFolder = Path.resolve(__dirname, '../client');
 
-const locations = require('./routes/locations');
-routes.use('/charSearch', locations);
+const chains = require('./chains/chains.api.js');
+routes.use('/charSearch', chains);
 
 routes.get('/app.js', function(req, res) {
 	res.sendFile(assetFolder + '/app.js');
