@@ -30,9 +30,7 @@
 - psql ss_dev (db meddling)
 
 
-##### Dev Server
-
-- createdb ss_dev
+##### Start Dev Server
 
 - npm start
 

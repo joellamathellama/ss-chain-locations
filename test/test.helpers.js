@@ -9,7 +9,7 @@ global.__client = __dirname + '/../client';
 var TH ={};
 module.exports = TH;
 
-TH.createApp = function()  {
+TH.createApp = function()  {// function to create express app in tests
 	var app = require('express')();
 	app.use(require('body-parser').json());
 	// app.use(function(err, req, res, next) {

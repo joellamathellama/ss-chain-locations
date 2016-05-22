@@ -12,7 +12,7 @@ describe("Catch-all routes", function(){
 		db.deleteAll();
 		done();
 	})
-
+	// Call PUT, POST, and DELETE to '/' (GET was tested in server.test.js)
 	describe("PUT '/", function() {
 		it("Expect 200 and index.html", function() {
 			return request(app)

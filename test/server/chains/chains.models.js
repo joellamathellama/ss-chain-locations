@@ -1,13 +1,6 @@
 var expect  = require('chai').expect;
-		// request = require('supertest-as-promised');
 
 describe("Call Chain model functions", function(){
-	// var app     = require(TEST_HELPERS).createApp(),
-	// 		routes  = require(__server + '/index.js'),
-	// 		db 			= require(__server + '/db.js'),
-	// 		chains  = require(__server + '/chains/chains.models.js');
-
-	// app.use('/', routes);
 	var db 			= require(__server + '/db.js'),
 			chains  = require(__server + '/chains/chains.models.js');
 
@@ -15,7 +8,7 @@ describe("Call Chain model functions", function(){
 		db.deleteAll();
 		done();
 	})
-	// call all the functions in 'chain.models.js'
+	// Call all the functions in 'chain.models.js'
 	describe("Call getEntry", function() {
 		it("Expects no data", function() {
 			return chains.getEntry("yuri")

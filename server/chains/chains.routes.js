@@ -16,11 +16,11 @@ routes.use('/', function(req, res, next) {
 routes.get('/:name', function(req, res) {
 	const name = req.params.name;
 	return chains.getEntry(name)
-		.then(function(data) {
-			if(data.length === 1){
+		.then(function(data) {// data returns one: [{row: data}]
+			if(data.length === 1){// if a row exists, send data.
 				res.status(200).json({data: data});
 			}
-			else{
+			else{// if not, send error
 				res.status(404).json("Entry does not exist!");
 			}
 		})
@@ -33,8 +33,9 @@ routes.post('/:name', function(req, res) {
 	const name = req.params.name,
 				locations = JSON.stringify(req.body.locations);
 	return chains.postEntry(name, locations)
-		.then(function(data) {
-			res.status(201).json({data: data});// send back inserted data
+		.then(function(data) {// created row is returned as: [{row: data}]
+			res.status(201).json({data: data});
+		}
 		})
 		.catch(function(err) {
 			res.status(409).json("Entry already exists!");
@@ -45,8 +46,8 @@ routes.put('/:name', function(req, res) {
 	const name = req.params.name,
 				locations = req.body.locations;
 	return chains.putEntry(name, locations)
-		.then(function(data) {
-			res.status(200).json({data: data});// send back inserted data
+		.then(function(data) {// changes row, returns edited row as: [{row: data}]
+			res.status(200).json({data: data});
 		})
 		.catch(function(err) {
 			res.status(404).json("Entry does not exist!");
@@ -56,7 +57,7 @@ routes.put('/:name', function(req, res) {
 routes.delete('/:name', function(req, res) {
 	const name = req.params.name;
 	return chains.deleteEntry(name)
-		.then(function(data){
+		.then(function(data){// On success, returns only a success message
 			res.status(200).json("Entry deleted!");
 		})
 		.catch(function(err) {

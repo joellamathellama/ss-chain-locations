@@ -12,7 +12,7 @@ describe("Initial Server Tests", function(){
 		db.deleteAll();
 		done();
 	})
-
+	// First few tests to get the juices flowing
 	describe("First steps", function() {
 		describe("Set apple = banana", function(){
 			it("Expect apple = banana", function() {

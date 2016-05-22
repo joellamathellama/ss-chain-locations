@@ -5,14 +5,13 @@ const express    = require('express'),
 		  routes     = express.Router();
 
 const assetFolder = Path.resolve(__dirname, '../client');
-
+// Chain routes
 const chains = require('./chains/chains.routes.js');
 routes.use('/charSearch', chains);
 
 routes.get('/app.js', function(req, res) {
 	res.sendFile(assetFolder + '/app.js');
 })
-
 // Catch all route, MUST BE LAST
 routes.use('/*', function(req,res) {
 	// res.status(500);// Testing purposes
@@ -24,6 +23,7 @@ routes.use('/*', function(req,res) {
 // 	body...
 // })
 
+// if NODE_ENV = 'development' or 'production', start express
 if(process.env.NODE_ENV !== 'test'){
 	const app = express();
 	app.use(express.static(assetFolder));
@@ -38,7 +38,7 @@ if(process.env.NODE_ENV !== 'test'){
 	console.log("Environment: ", process.env.NODE_ENV);
 	console.log("Express server listening on port: ", port);
 }
-else{
+else{// if the environment is 'test', don't start express and export routes
 	console.log("Environment: ", process.env.NODE_ENV);
 	module.exports = routes;
 }

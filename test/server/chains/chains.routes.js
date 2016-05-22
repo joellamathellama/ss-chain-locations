@@ -12,6 +12,7 @@ describe("'/charSearch' routes", function(){
 		db.deleteAll();
 		done();
 	})
+	// Call all routes in 'chains.routes.js'
 	// Requests without params should be intercepted
 	describe("'/charSearch' without params", function() {// these should all return the same message
 		describe("GET '/charSearch'", function() {
