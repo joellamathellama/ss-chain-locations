@@ -13,12 +13,39 @@
 
 - Postgres
 
-##### TODO
+- Mocha, Chai, Supertest, Supertest-as-promised
 
-- Implement testing: Mocha/Chai/Supertest
-
-##### Run in Development:
+##### First things first
 
 - npm install
 
+##### Database
+
+- initdb db/
+
+- postgres -D db/ (or what they show you in Terminal, if it's different)
+
+- createdb DB_NAME
+
+- psql ss_dev (db meddling)
+
+
+##### Dev Server
+
+- createdb ss_dev
+
 - npm start
+
+##### Tests
+
+Initial
+- dropdb ss_test
+
+- createdb ss_test
+
+- NODE_ENV=test node server/index.js
+
+- CTRL + c
+
+Consecutive
+- npm [test, run nyan, run spec]

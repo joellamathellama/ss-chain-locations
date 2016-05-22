@@ -1,9 +1,16 @@
 "use strict";
 
+var appjs = {
+	searchEntry: searchEntry,
+	addEntry: addEntry,
+	deleteEntry: deleteEntry
+};
+
+module.exports = appjs;
 
 // SEARCH ------
-function searchEntry() {
-	var charName = document.getElementById("charName").value,
+function searchEntry(name) {
+	var charName = document.getElementById("charName").value || name,
 			message = document.createTextNode("Please fill in a players name!"),
 			view = new viewCtrl(),
 			configs = {
@@ -46,7 +53,7 @@ function searchEntry() {
 
 
 // ADD ------
-function addEntry() {
+function addEntry(name, locations) {
 	var charName = document.getElementById("charName").value,
 			locations = document.getElementById("locations").value.split(','),
 			message = document.createTextNode("Please fill in all fields!"),
@@ -92,7 +99,7 @@ function addEntry() {
 
 
 // DELETE ------
-function deleteEntry() {
+function deleteEntry(name) {
 	var charName = document.getElementById("charName").value,
 			view = new viewCtrl(),
 			message = document.createTextNode("Please fill in a players name!"),
